@@ -23,11 +23,15 @@
   "dependencies": {
     "@codemirror/commands": "^6.2.5",
     "@codemirror/lang-javascript": "^6.2.1",
+    "@codemirror/lang-markdown": "^6.2.0",
     "@codemirror/language": "^6.9.0",
+    "@codemirror/language-data": "^6.3.1",
     "@codemirror/state": "^6.2.1",
+    "@codemirror/theme-one-dark": "^6.1.2",
     "@codemirror/view": "^6.17.1",
     "@electron-toolkit/preload": "^2.0.0",
     "@electron-toolkit/utils": "^2.0.0",
+    "@lezer/highlight": "^1.1.6",
     "electron-updater": "^6.1.1"
   },
   "devDependencies": {

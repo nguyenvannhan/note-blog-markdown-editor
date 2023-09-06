@@ -9,17 +9,46 @@ import {
 } from '@codemirror/view'
 import { defaultKeymap, history, historyKeymap } from '@codemirror/commands'
 import {
+  HighlightStyle,
   bracketMatching,
   defaultHighlightStyle,
   indentOnInput,
   syntaxHighlighting
 } from '@codemirror/language'
-import { javascript } from '@codemirror/lang-javascript'
+import { tags } from '@lezer/highlight'
+import { markdown, markdownLanguage } from '@codemirror/lang-markdown'
+import { languages } from '@codemirror/language-data'
+import { oneDark } from '@codemirror/theme-one-dark'
 
 interface Props {
   initialDoc: string
   onChange?: (state: EditorState) => void
 }
+
+export const transparentTheme = EditorView.theme({
+  '&': {
+    backgroundColor: 'transparent !important',
+    height: '100%'
+  }
+})
+
+const syntaxHighlight = HighlightStyle.define([
+  {
+    tag: tags.heading1,
+    fontSize: '1.6em',
+    fontWeight: 'bold'
+  },
+  {
+    tag: tags.heading2,
+    fontSize: '1.4em',
+    fontWeight: 'bold'
+  },
+  {
+    tag: tags.heading3,
+    fontSize: '1.2em',
+    fontWeight: 'bold'
+  }
+])
 
 const useCodeMirror = <T extends Element>(
   props: Props
@@ -42,7 +71,14 @@ const useCodeMirror = <T extends Element>(
         bracketMatching(),
         syntaxHighlighting(defaultHighlightStyle),
         highlightActiveLine(),
-        javascript(),
+        markdown({
+          base: markdownLanguage,
+          codeLanguages: languages,
+          addKeymap: true
+        }),
+        oneDark,
+        transparentTheme,
+        syntaxHighlighting(syntaxHighlight),
         EditorView.lineWrapping,
         EditorView.updateListener.of((update) => {
           if (update.changes) {
@@ -58,6 +94,10 @@ const useCodeMirror = <T extends Element>(
     })
 
     setEditorView(view)
+
+    return () => {
+      view.destroy()
+    }
   }, [refContainer])
 
   return [refContainer, editorView]

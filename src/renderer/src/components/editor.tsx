@@ -9,14 +9,15 @@ interface Props {
 }
 
 const Editor: React.FC<Props> = (props) => {
-  const { onChange } = props
+  const { onChange, initialDoc } = props
   const handleChange = useCallback((state: EditorState) => onChange(state.doc.toString()), [])
   const [refContainer, editorView] = useCodeMirror<HTMLDivElement>({
-    initialDoc: props.initialDoc,
+    initialDoc: initialDoc,
     onChange: handleChange
   })
 
   useEffect(() => {
+    console.log('123')
     if (editorView) {
       // Do nothing for now
     }

@@ -1,6 +1,6 @@
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import './assets/app.css'
-import Editor from './components/editor'
+import Editor from './components/Editor'
 
 const App: React.FC = () => {
   const [doc, setDoc] = useState<string>('# Hello, World!\n')
@@ -8,6 +8,10 @@ const App: React.FC = () => {
   const handleDocChange = useCallback((newDoc: string) => {
     setDoc(newDoc)
   }, [])
+
+  useEffect(() => {
+    console.log(doc)
+  }, [doc])
 
   return (
     <div className="app">
