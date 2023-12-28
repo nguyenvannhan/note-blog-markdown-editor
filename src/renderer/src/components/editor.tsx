@@ -1,7 +1,7 @@
-import useCodeMirror from '@renderer/use-codemirror'
-import '../assets/editor.css'
-import { useCallback, useEffect } from 'react'
 import { EditorState } from '@codemirror/state'
+import useCodeMirror from '@renderer/use-codemirror'
+import { useCallback, useEffect } from 'react'
+import '../assets/editor.css'
 
 interface Props {
   initialDoc: string
@@ -17,7 +17,6 @@ const Editor: React.FC<Props> = (props) => {
   })
 
   useEffect(() => {
-    console.log('123')
     if (editorView) {
       // Do nothing for now
     }

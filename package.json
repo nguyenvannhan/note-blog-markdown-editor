@@ -32,7 +32,14 @@
     "@electron-toolkit/preload": "^2.0.0",
     "@electron-toolkit/utils": "^2.0.0",
     "@lezer/highlight": "^1.1.6",
-    "electron-updater": "^6.1.1"
+    "assert": "^2.0.0",
+    "electron-updater": "^6.1.1",
+    "github-markdown-css": "^5.2.0",
+    "process": "^0.11.10",
+    "remark-gfm": "^3.0.1",
+    "remark-parse": "^10.0.2",
+    "remark-react": "^9.0.1",
+    "unified": "^11.0.3"
   },
   "devDependencies": {
     "@electron-toolkit/eslint-config-prettier": "^1.0.1",

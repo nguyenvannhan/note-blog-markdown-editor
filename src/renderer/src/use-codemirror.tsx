@@ -1,13 +1,5 @@
-import { useEffect, useState, useRef } from 'react'
-import { EditorState } from '@codemirror/state'
-import {
-  EditorView,
-  highlightActiveLine,
-  highlightActiveLineGutter,
-  keymap,
-  lineNumbers
-} from '@codemirror/view'
 import { defaultKeymap, history, historyKeymap } from '@codemirror/commands'
+import { markdown, markdownLanguage } from '@codemirror/lang-markdown'
 import {
   HighlightStyle,
   bracketMatching,
@@ -15,10 +7,18 @@ import {
   indentOnInput,
   syntaxHighlighting
 } from '@codemirror/language'
-import { tags } from '@lezer/highlight'
-import { markdown, markdownLanguage } from '@codemirror/lang-markdown'
 import { languages } from '@codemirror/language-data'
+import { EditorState } from '@codemirror/state'
 import { oneDark } from '@codemirror/theme-one-dark'
+import {
+  EditorView,
+  highlightActiveLine,
+  highlightActiveLineGutter,
+  keymap,
+  lineNumbers
+} from '@codemirror/view'
+import { tags } from '@lezer/highlight'
+import { useEffect, useRef, useState } from 'react'
 
 interface Props {
   initialDoc: string
@@ -77,7 +77,6 @@ const useCodeMirror = <T extends Element>(
           addKeymap: true
         }),
         oneDark,
-        transparentTheme,
         syntaxHighlighting(syntaxHighlight),
         EditorView.lineWrapping,
         EditorView.updateListener.of((update) => {
